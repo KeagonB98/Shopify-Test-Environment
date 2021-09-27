@@ -1,6 +1,10 @@
-$background-color-red: red;
+$background-color-red: pink;
 
+body {
+    background-color: blue !important;
+}
 
 .button {
-    background-color: red !important;
+    background-color: $background-color-red !important;
 }
+
