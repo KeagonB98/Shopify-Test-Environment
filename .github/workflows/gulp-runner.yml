@@ -3,7 +3,7 @@ name: Run gulp tasks
 on:
   push:
     branches: [ master ]
-    paths: ["scripts/custom.js", "styles/custom.scss"]
+    paths: ["scripts/custom.js", "styles/*.scss"]
     
 jobs:
   build:
@@ -16,20 +16,14 @@ jobs:
            os: [macos-latest, windows-latest, ubuntu-latest]
 
        steps:
-       - uses: actions/checkout@v1
+       - uses: actions/checkout@v2
        - name: Use Node.js ${{ matrix.node-version }}
          uses: actions/setup-node@v1
          with:
           node-version: ${{ matrix.node-version }}
-       - run: npm ci
-       - run: gulp
-        
-       - name: Commit files
-         run: |
-          git config --local user.name  ${{ github.actor }}
-          git add -A
-          git commit -m "Update gulp output files" 
-          - name: Push changes
-          uses: ad-m/github-push-action@master
-          with:
-          github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
+          
+       -  name: Build
+          run: |
+            npm i
+            gulp
+        - run: gulp
