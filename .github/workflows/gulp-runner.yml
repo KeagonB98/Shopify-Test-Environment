@@ -1,0 +1,36 @@
+name: Run gulp tasks
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["scripts/custom.js", "styles/custom.scss"]
+    
+    
+  jobs:
+    build:
+       runs-on: windows-latest
+       
+       strategy:
+        matrix:
+        node-version: [12.x, 14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v2
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: npm ci
+        - run: gulp
+        
+        
+         - name: Commit files
+            run: |
+              git config --local user.name  ${{ github.actor }}
+              git add -A
+              git commit -m "Update gulp output files"
+          - name: Push changes
+            uses: ad-m/github-push-action@master
+            with:
+              github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
