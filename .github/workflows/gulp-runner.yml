@@ -24,13 +24,12 @@ on:
         - run: npm ci
         - run: gulp
         
-        
-         - name: Commit files
-            run: |
-              git config --local user.name  ${{ github.actor }}
-              git add -A
-              git commit -m "Update gulp output files"
+        - name: Commit files
+        run: |
+          git config --local user.name  ${{ github.actor }}
+          git add -A
+          git commit -m "Update gulp output files" 
           - name: Push changes
-            uses: ad-m/github-push-action@master
-            with:
-              github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
