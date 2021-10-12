@@ -21,6 +21,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
        -  name: install dependencies
-       -  run: npm install
-       -  name: run gulp command
-       -  run: gulp
+       -  run: |
+              npm install
+              gulp
