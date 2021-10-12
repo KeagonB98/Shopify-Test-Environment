@@ -3,7 +3,7 @@ name: Run gulp tasks
 on:
   pull_request:
     branches: [ master ]
-    paths: ["scripts/*.js", "styles/custom.scss"]
+    paths: ["scripts/*.js", "styles/*.scss"]
     
 jobs:
   build:
