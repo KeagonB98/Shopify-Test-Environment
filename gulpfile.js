@@ -9,7 +9,7 @@ const terser = require('gulp-terser');
 
 // SCSS
 function compilescss() {
-    return src('styles/*.scss')
+    return src('styles/custom.scss')
         .pipe(sass())
         .pipe(prefix('last 2 versions'))
         .pipe(minify())
