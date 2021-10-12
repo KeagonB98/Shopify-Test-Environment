@@ -3,7 +3,7 @@ name: Run gulp tasks
 on:
   push:
     branches: [ master ]
-    paths: ["scripts/custom.js", "styles/*.scss"]
+    paths: ["scripts/custom.js", "styles/custom.scss"]
     
 jobs:
   build:
